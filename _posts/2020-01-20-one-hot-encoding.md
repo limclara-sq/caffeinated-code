@@ -63,5 +63,14 @@ It is not too complicated to write code to implement such a logic, but wait up -
 
 First, we instantiate the OneHotEncoder object:
 
-> `from sklearn import OneHotEncoder
+`from sklearn import OneHotEncoder
 category_encoder = OneHotEncoder()`
+
+Note that there is an optional parameter ("sparse") in instantiating the object. By default, `sparse` is set to `True`.
+When `sparse=False` is passed as an argument, the output is a non-sparse matrix. This is a very useful parameter to take note of when the categorical attribute has many, many columns (*many like thousands, or tens of thousands*). After one-hot encoding, the returned matrix is full of zeros except for a single 1 per row. A standard NumPy array would use up tons of memory in storing these zeros (read: it's actually pretty wasteful); a sparse matrix only stores the local of the non-zero elements, and takes up much less memory.
+
+Next, you apply the OneHotEncoder object on the DataFrame (assuming your data is stored in a DataFrame):
+
+`X_train = category_encoder.fit_transform(X)`
+
+The `fit_transform` method joins the methods `fit()` and `transform()` in sequential order. 
