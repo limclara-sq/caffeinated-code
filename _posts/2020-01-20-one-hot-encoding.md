@@ -37,7 +37,9 @@ and
 
 In other words, each label within the categorical feature is transformed into a binary column, and we end up with `n` new columns representing the original column of `n` different labels.
 
-In the same example, an original table would be converted from
+The important idea here is that we want to avoid improperly assigning weights to different values of a category.
+
+And back to the sample example, there would be one new binary column created for each label ("country") within the column. If the original data looked like this:
 
 | country      | GDP per capita (USD) |
 | ----------- | ----------- |
@@ -45,7 +47,7 @@ In the same example, an original table would be converted from
 | United Kingdom   | 39 720        |
 | China   | 8826        |
 
-to
+After one-hot encoding, it would look like this (given that the original column was dropped):
 
 | GDP per capita (USD) | country_singapore | country_uk | country_china |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
@@ -53,7 +55,13 @@ to
 | 39 720       | 0 | 1 | 0
 | 8826         | 0 | 0 | 1 |
 
-The benefit of this method is in preventing weighting a value improperly.
-
+1 is assigned to the when the value is existent, while 0 is assigned when the value is non-existent.
 
 ### A Scikit-Learn Implementation
+
+It is not too complicated to write code to implement such a logic, but wait up - you might be delighted to know that Scikit-Learn already provides a `OneHotEncoder` class to convert categorical values into one-hot vectors. Here is a brief walk-through of how it can be implemented.  
+
+First, we instantiate the OneHotEncoder object:
+
+> `from sklearn import OneHotEncoder
+category_encoder = OneHotEncoder()`
