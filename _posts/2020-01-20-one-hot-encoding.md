@@ -31,7 +31,23 @@ One-Hot Encoding can help us model this understanding of ours mathematically. Wh
 
 > Encode categorical features as a one-hot numeric array.
 
+and
+
 > The input to this transformer should be an array-like of integers or strings, denoting the values taken on by categorical (discrete) features. The features are encoded using a one-hot (aka ‘one-of-K’ or ‘dummy’) encoding scheme. This creates a binary column for each category and returns a sparse matrix or dense array (depending on the sparse parameter)
+
+In other words, each label within the categorical feature is transformed into a binary column, and we end up with `n` new columns representing the original column of `n` different labels.
+
+| country      | GDP per capita (USD) |
+| ----------- | ----------- |
+| Singapore      | 57 714       |
+| United Kingdom   | 39 720        |
+| China   | 8826        |
+
+| GDP per capita (USD) | country_singapore | country_uk | country_china |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| 57 714       | 1 | 0 | 0 |
+| 39 720       | 0 | 1 | 0
+| 8826         | 0 | 0 | 1 |
 
 The benefit of this method is in preventing weighting a value improperly.
 
