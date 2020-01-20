@@ -19,7 +19,7 @@ It is important to know whether a variable is ordinal or nominal because statist
 
 ### The grave danger of introducing order to your nominal categorical variables
 
-As we mentioned, categorical labels need to be encoded to numerical labels so that the ML models are able to understand them. However, when the categorical feature is nominal, one would be careful not to blindly label encode these features. As an illustration, let's go back to the example of the  3 labels ("Singapore", "United Kingdom" and "China") in a dataset. Label encoding would mean that each value is converted to a number, such as:
+As we mentioned, categorical labels need to be encoded to numerical labels so that the ML models are able to understand them. However, when the categorical feature is nominal, one would be careful not to blindly label encode these features. As an illustration, let's go back to the example of the  3 labels ("Singapore", "United Kingdom" and "China") in a dataset. In label encoding, each value is converted to a number, such as:
 
 `{"Singapore": 1, "United Kingdom": 2, "China": 3}`
 
@@ -37,11 +37,15 @@ and
 
 In other words, each label within the categorical feature is transformed into a binary column, and we end up with `n` new columns representing the original column of `n` different labels.
 
+In the same example, an original table would be converted from
+
 | country      | GDP per capita (USD) |
 | ----------- | ----------- |
 | Singapore      | 57 714       |
 | United Kingdom   | 39 720        |
 | China   | 8826        |
+
+to
 
 | GDP per capita (USD) | country_singapore | country_uk | country_china |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
