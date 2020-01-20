@@ -73,4 +73,4 @@ Next, you apply the OneHotEncoder object on the DataFrame (assuming your data is
 
 `X_train = category_encoder.fit_transform(X)`
 
-The `fit_transform` method joins the methods `fit()` and `transform()` in sequential order. 
+(Note: the `fit_transform` method joins the methods `fit()` and `transform()` in sequential order.) 
